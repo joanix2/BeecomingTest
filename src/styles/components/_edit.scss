@@ -1,0 +1,41 @@
+.selector{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 20px;
+    background: $color-3;
+    border-radius: 20px;
+    padding: 10px;
+    color: $white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.452);
+
+    select{
+        width: 25vw;
+        height: 30px;
+        margin: 5px;
+    }
+    
+    option{
+        color: black;
+    }
+    button{
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 30px;
+    }
+
+}
+
+.edit{
+    text-align: center;
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      li{
+          list-style: none;
+      }
+}
