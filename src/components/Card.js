@@ -10,6 +10,8 @@ const Card = ({ country}) => {
                     let villes = JSON.parse(localStorage.getItem(cookiesName));
                     delete villes[country["id"]]
                     localStorage.setItem(cookiesName, JSON.stringify(villes));
+                    window.location.reload(false);
+                    //console.log(JSON.parse(localStorage.getItem(cookiesName)));
                 }}>X</button>
                 <h2>{country["pays"]}</h2>
                 <h4>{country["capital"]}</h4>

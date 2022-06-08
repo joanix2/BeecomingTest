@@ -6,18 +6,15 @@ import Card from '../components/Card';
 const Edit = () => {
     const [optionValue, setOptionValue] = useState(0);
     const [data, setData] = useState([]);
-    const [villes, setVilles] = useState({});
     const cookiesName = 'villes';
+
+    let villes = {};
     
 
     useEffect(() => {
         axios
         .get("https://restcountries.com/v3.1/all")
         .then((res) => setData(res.data.filter((country) => country.capital !== undefined).sort((a, b) => b.population - a.population)))
-        .then(() => {
-        if(JSON.parse(localStorage.getItem(cookiesName)) !== null){
-            setVilles(JSON.parse(localStorage.getItem(cookiesName)));
-        }})
     }, [])
 
     const addPays = (i) => {   
@@ -31,17 +28,19 @@ const Edit = () => {
             "lng": parseFloat(data[i].latlng[1])
         }
     
-        const SetVille = (i, ville) => {
-            villes[i] = ville
-            setVilles(villes)
-            localStorage.setItem(cookiesName, JSON.stringify(villes));
-        }
     
         if(JSON.parse(localStorage.getItem(cookiesName)) !== null){
-            setVilles(JSON.parse(localStorage.getItem(cookiesName)));
+            villes = JSON.parse(localStorage.getItem(cookiesName));
+            console.log("refresh var")
         }
-        SetVille(i, ville)
-        console.log(JSON.parse(localStorage.getItem(cookiesName)));
+
+        //console.log(JSON.parse(localStorage.getItem(cookiesName)));
+
+        villes[i] = ville
+        localStorage.setItem(cookiesName, JSON.stringify(villes));
+        window.location.reload(false);
+        
+        //console.log(JSON.parse(localStorage.getItem(cookiesName)));
     }
 
     const PaysListe = () => {
