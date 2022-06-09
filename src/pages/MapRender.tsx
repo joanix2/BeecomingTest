@@ -37,7 +37,7 @@ const MapRender: React.FC = () => {
   return (
     <div style={{ height: "100%" }}>
       <Navigation/>
-      <Wrapper apiKey={"AIzaSyA6EVPKlPBRAnhyVZ7k1Hz64Fhx4r5S4CY"} render={render}>
+      <Wrapper apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY!} render={render}>
         <Map center={center} zoom={zoom} style={{ flexGrow: "1", height: "90vh" }}>
           {Object.entries(JSON.parse(localStorage.getItem(cookiesName)!)).map(([key, value]: any[]) => (
             <Marker key={key} position={{ lat: value["lat"], lng: value["lng"] }} />
@@ -97,9 +97,6 @@ const Map: React.FC<MapProps> = ({
 
 const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
   const [marker, setMarker] = React.useState<google.maps.Marker>();
-  const Key = options;
-
-  console.log(Key)
 
   React.useEffect(() => {
     if (!marker) {
