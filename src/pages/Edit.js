@@ -14,7 +14,14 @@ const Edit = () => {
     useEffect(() => {
         axios
         .get("https://restcountries.com/v3.1/all")
-        .then((res) => setData(res.data.filter((country) => country.capital !== undefined).sort((a, b) => b.population - a.population)))
+        .then((res) => setData(res.data.filter((country) => country.capital !== undefined).sort((a, b) => {
+            var nameA = a.capital[0].toLowerCase(), nameB = b.capital[0].toLowerCase();
+            if (nameA < nameB) //sort string ascending
+             return -1;
+            if (nameA > nameB)
+             return 1;
+            return 0; //default return value (no sorting)
+           })))
     }, [])
 
     const addPays = (i) => {   
@@ -40,7 +47,7 @@ const Edit = () => {
         localStorage.setItem(cookiesName, JSON.stringify(villes));
         window.location.reload(false);
         
-        //console.log(JSON.parse(localStorage.getItem(cookiesName)));
+        //console.log(localStorage.getItem(cookiesName));
     }
 
     const PaysListe = () => {
